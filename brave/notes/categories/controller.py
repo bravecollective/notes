@@ -9,8 +9,8 @@ from brave.notes.config import settings
 urls = (
     '/add', 'add',
     '/delete', 'delete',
-    '/', 'categories'
-    '', 'categories'
+    '/', 'categories',
+    '', 'categories',
 )
 
 @login_required

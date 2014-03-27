@@ -11,8 +11,8 @@ urls = (
     '/edit/(.*)', 'edit',
     '/add', 'add',
     '/delete', 'delete',
-    '/', 'notes'
-    '', 'notes'
+    '/', 'notes',
+    '', 'notes',
 )
 
 @login_required
