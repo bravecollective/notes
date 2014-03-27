@@ -1,0 +1,29 @@
+$def with (categories, error)
+$var id:addnote
+$var title:Add Note
+$var cssfiles:
+$var jsfiles: $settings['path']/static/js/tree.js
+
+$:render.notelist(categories, 'addnote')
+
+<div class="col-md-9">
+    <div class="well well-lg">
+        <form class="form-addnote newnote" role="form" method="post" id="addnote">
+            $if error:
+                <div class="alert alert-danger">$error</div>
+            <h1 class="form-newnote-heading">New note</h1>
+            <input name="title" type="text" class="form-control" placeholder="Note title">
+            <textarea name="body" class="form-control" rows="20"></textarea>
+            <input id="category" name="category" type="hidden">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    Add to <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    $for category in categories:
+                        <li><a href="#" onclick="\$('#category').val('$category.id'); \$('#addnote').submit()">$category.title</a></li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>

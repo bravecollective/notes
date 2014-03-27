@@ -1,0 +1,62 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides: myservice
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Put a short description of the service here
+# Description: Put a long description of the service here
+### END INIT INFO
+
+USER=user
+
+projects=(
+  /path/to/app      9002
+)
+
+# Start the services
+start(){
+
+  for (( i=0; i<${#projects[@]}; i++ ))
+  do
+    spawn-fcgi -d ${projects[$i]} -f ${projects[$i]}/__init__.py -p ${projects[$i+1]} -u $USER
+    i=$i+1
+  done
+}
+
+# Stop the services
+stop(){
+  for (( i=0; i<${#projects[@]}; i++ ))
+  do
+    CPID=$(pgrep -f "python ${projects[$i]}/__init__.py") # current process id
+    if [ "$CPID" != "" ]
+      then
+      kill $CPID
+    fi
+    i=$i+1
+  done
+} 
+
+# Main program
+case "$1" in
+  start)
+    start
+    echo "Started services"
+    ;;
+  stop)
+    stop
+    echo "Stopped services"
+    ;;
+  restart|reload)
+    stop
+	sleep 1
+    start
+    echo "Restarted services"
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|reload}"
+    exit 1
+esac
+exit 0

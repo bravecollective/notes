@@ -1,0 +1,56 @@
+settings = {
+    # Name of site
+    'sitename': 'BraveNote',
+    # If site is hosted at http://yourdomain.com/notepad the path should be "/notepad"
+    'path': '',
+    # Doamin name
+    'domain': '',
+    # Email users can contact you on
+    'supportemail': 'your@email.com',
+    # If site uses SSL
+    'ssl': True,
+
+    'api': {
+        'endpoint': 'https://core.bravecollective.net/api',
+        'identity': '',
+        'private': '',
+        'public': '',
+    }
+}
+
+menu = [
+    {
+        'title': 'Notes',
+        'href': settings['path'] + '/notes',
+        'id': 'notes',
+        'icon': 'list-alt',
+        'auth': 1
+    },
+    {
+        'title': 'Categories',
+        'href': settings['path'] + '/categories',
+        'id': 'categories',
+        'icon': 'th-large',
+        'auth': 1
+    },
+]
+
+"""
+{
+    # Title of page
+    'title': 'Categories',
+    # Page URL
+    'href': '/categories',
+    # ID of page, used to highlight active page
+    'id': 'categories',
+    # Page icon
+    'icon': 'th-large',
+    # 1 = Shown if signed in, 0 = Always show
+    'auth': 1
+},
+"""
+
+p_globals = {
+    'settings': settings,
+    'menu': menu
+}

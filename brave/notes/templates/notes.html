@@ -1,0 +1,31 @@
+$def with (categories, anote)
+
+$var id:notes
+$var title:Notes
+$var cssfiles:
+$var jsfiles: $settings['path']/static/js/tree.js $settings['path']/static/js/deleteDialog.js
+
+$:render.deletemodal()
+$:render.notelist(categories, 'notes', anote and anote.nid or '')
+
+<div class="col-md-9">
+        <div class="well well-lg notes">
+            $if anote != None:
+                <form id="deletenote" action="$settings['path']/notes/delete" method="post">
+                    <input id="noteid" name="id" type="hidden">
+                </form>
+                <div class="btn-group pull-right">
+                    <a href="$settings['path']/notes/edit/$anote.nid" class="btn btn-success">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <a href="#" class="btn btn-danger confirm-delete" data-id="$anote.nid" data-form="#deletenote" data-field="#noteid">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </div>
+                <h1>$anote.title</h1>
+                $:md.convert(anote.text)
+            $else:
+                <h1>Notes</h1>
+                <p>Select a note to read.</p>
+        </div>
+</div>

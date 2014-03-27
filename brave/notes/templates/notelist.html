@@ -1,0 +1,28 @@
+$def with (categories, active, nid = '')
+<div class="col-md-3">
+        <div class="well well-lg">
+            <div class="btn-group notesmenu">
+                <a href="$settings['path']/notes/add" class="btn btn-primary
+                    $if active == 'addnote':
+                        active
+                    " style="width: 100%;">
+                    Add note
+                </a>
+            </div>
+            <ul class="nav nav-list">
+                $if categories:
+                    $for category in categories:
+                        <li><label class="tree-toggler nav-header"><span class="glyphicon glyphicon-chevron-down"></span> $category.title</label>
+                                <ul class="nav nav-list tree notes">
+                                    $for note in category.notes:
+                                        <li
+                                            $if nid == note.nid:
+                                                class="active"
+                                        ><a href="$settings['path']/notes/view/$note.nid">$note.title</a></li>
+                                </ul>
+                        </li>
+                $else:
+                    <li>No categories</li>
+            </ul>
+        </div>
+</div>

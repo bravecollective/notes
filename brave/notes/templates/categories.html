@@ -1,0 +1,43 @@
+$def with (categories, anote)
+
+$var id:categories
+$var title:Categories
+$var cssfiles:
+$var jsfiles: $settings['path']/static/js/deleteDialog.js
+
+$:render.deletemodal()
+
+<div class="col-md-6 col-md-offset-3">
+        <div class="well well-lg categories">
+                <form id="deletecategory" action="$settings['path']/categories/delete" method="post">
+                    <input id="categoryid" name="id" type="hidden">
+                </form>
+                <div class="pull-right">
+                    <a href="$settings['path']/categories/add" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+                <h1>Categories</h1>
+                <div class="categorieslist">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            $for category in categories:
+                                <tr>
+                                    <td style="width: 85%;"><span>$category.title</span></td>
+                                    <td>
+                                        <a href="#" class="btn btn-danger confirm-delete btn-sm" data-id="$category.id" data-form="#deletecategory" data-field="#categoryid">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+</div>
