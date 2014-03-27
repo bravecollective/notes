@@ -19,14 +19,14 @@ After that
     git clone https://github.com/bravecollective/notes.git
 
 Copy the sample config and modify it to your preference  
-``(cd bravenotes/brave/notes; cp config.py.sample config.py; editor config.py)``
+``(cd notes/brave/notes; cp config.py.sample config.py; editor config.py)``
 
     
 Development:
 Start application by running the following commands
 
-    cd bravenotes/app
-    python __init__.py
+    cd notes
+    python startup.py
     
 Live:
 
