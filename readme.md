@@ -33,8 +33,8 @@ Live:
     sudo apt-get install spawn-fcgi
 
 Modify the first line in fcgi.py to be the path to the virtualenv python binary.
-Modify the path in the init script ("service" file in root) to match your installation and save it to ``/etc/init.d/bravenotes`` and make it runable ``chmod +x /etc/init.d/bravenotes``
-Make fcgi.py runable ``chmod +x fcgi.py``
+Modify the path in the init script ("service" file in root) to match your installation and save it to ``/etc/init.d/bravenotes`` and make it runnable ``chmod +x /etc/init.d/bravenotes``
+Make fcgi.py runnable ``chmod +x fcgi.py``
 
 Make the site autostart ``sudo update-rc.d bravenotes defaults``
 
