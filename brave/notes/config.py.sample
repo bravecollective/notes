@@ -33,6 +33,13 @@ menu = [
         'icon': 'th-large',
         'auth': 1
     },
+    {
+        'title': 'FAQ',
+        'href': settings['path'] + '/faq',
+        'id': 'faq',
+        'icon': 'info-sign',
+        'auth': 1
+    },
 ]
 
 """

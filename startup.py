@@ -7,6 +7,7 @@ from brave.notes.home.controller import app_home
 from brave.notes.notes.controller import app_notes
 from brave.notes.account.controller import app_account
 from brave.notes.categories.controller import app_categories
+from brave.notes.faq.controller import app_faq
 
 mongoengine.connect('BraveNotes')
 
@@ -14,6 +15,7 @@ urls = (
     settings['path'] + '/notes', app_notes,
     settings['path'] + '/account', app_account,
     settings['path'] + '/categories', app_categories,
+    settings['path'] + '/faq', app_faq,
     settings['path'] + '/', app_home,
     settings['path'] + '', app_home,
 )
