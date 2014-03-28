@@ -9,13 +9,12 @@ Start by creating a python environment
 
     virtualenv bravenotes
 
-After that
+After the virtual environment has been created, run the commands below:
 
     cd bravenotes
     source bin/activate
 	git clone https://github.com/bravecollective/api.git
     (cd api; python setup.py develop)
-	
     git clone https://github.com/bravecollective/notes.git
     (cd notes; python setup.py develop)
 
@@ -24,19 +23,21 @@ Copy the sample config and modify it to your preference
 
     
 Development:
+
 Start application by running the following commands
 
     cd notes
     python startup.py
     
 Live:
+
     cd notes
     sudo apt-get install spawn-fcgi
 
 Modify the first line in fcgi.py to be the path to the virtualenv python binary.
-Modify the path in the init script ("service" file in root) to match your installation and save it to ``/etc/init.d/bravenotes`` and make it runnable ``chmod +x /etc/init.d/bravenotes``
+Modify the path in the init script ("service" file in root) to match your installation, save it and make the service autorun.
 
-Make the site autostart ``sudo update-rc.d bravenotes defaults``
+    (cp service /etc/init.d/bravenotes; sudo update-rc.d bravenotes defaults; editor /etc/init.d/bravenotes)
 
 Add the code below to your nginx site config file and modiy the path to the static content.
 
