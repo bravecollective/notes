@@ -1,4 +1,4 @@
-## 1. What is BravePad
+## 1. What is Brave Notes?
 
 Coming soon...
 
