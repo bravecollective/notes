@@ -22,6 +22,7 @@ app = web.application(urls, globals())
 
 store = web.session.DiskStore('brave/notes/sessions')
 session = web.session.Session(app,store,initializer={'signedin': 0, 'user': None})
+session._config.secure = settings['ssl']
 
 def session_hook():
     web.ctx.session = session

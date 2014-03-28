@@ -1,6 +1,6 @@
 settings = {
     # Name of site
-    'sitename': 'BraveNote',
+    'sitename': 'Brave Notes',
     # If site is hosted at http://yourdomain.com/notepad the path should be "/notepad"
     'path': '',
     # Doamin name
