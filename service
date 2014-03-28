@@ -21,7 +21,7 @@ start(){
 
   for (( i=0; i<${#projects[@]}; i++ ))
   do
-    spawn-fcgi -d ${projects[$i]} -f ${projects[$i]}/__init__.py -p ${projects[$i+1]} -u $USER
+    spawn-fcgi -d ${projects[$i]} -f ${projects[$i]}/fcgi.py -p ${projects[$i+1]} -u $USER
     i=$i+1
   done
 }
@@ -30,7 +30,7 @@ start(){
 stop(){
   for (( i=0; i<${#projects[@]}; i++ ))
   do
-    CPID=$(pgrep -f "python ${projects[$i]}/__init__.py") # current process id
+    CPID=$(pgrep -f "python ${projects[$i]}/fcgi.py") # current process id
     if [ "$CPID" != "" ]
       then
       kill $CPID

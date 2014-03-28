@@ -17,6 +17,7 @@ After that
     (cd api; python setup.py develop)
 	
     git clone https://github.com/bravecollective/notes.git
+    (cd notes; python setup.py develop)
 
 Copy the sample config and modify it to your preference  
 ``(cd notes/brave/notes; cp config.py.sample config.py; editor config.py)``
@@ -29,12 +30,11 @@ Start application by running the following commands
     python startup.py
     
 Live:
-
+    cd notes
     sudo apt-get install spawn-fcgi
 
 Modify the first line in fcgi.py to be the path to the virtualenv python binary.
 Modify the path in the init script ("service" file in root) to match your installation and save it to ``/etc/init.d/bravenotes`` and make it runnable ``chmod +x /etc/init.d/bravenotes``
-Make fcgi.py runnable ``chmod +x fcgi.py``
 
 Make the site autostart ``sudo update-rc.d bravenotes defaults``
 
