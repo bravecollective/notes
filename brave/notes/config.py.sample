@@ -11,7 +11,7 @@ settings = {
     'ssl': True,
 
     'api': {
-        'endpoint': 'https://core.bravecollective.net/api',
+        'endpoint': 'https://core.braveineve.com/api',
         'identity': '',
         'private': '',
         'public': '',

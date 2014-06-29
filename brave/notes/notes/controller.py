@@ -105,7 +105,8 @@ class delete:
 class add:
 
     form = form.Form(
-        form.Textbox('category', catid_validator),
+        form.Textbox('category'),
+        form.Textbox('newcategory'),
         form.Textbox('title', title_validator),
         form.Textbox('body', body_validator),
     )
@@ -118,14 +119,23 @@ class add:
         from brave.notes.core.session import session
         form = self.form()
         error = ""
-        if form.validates():
+        if form.validates() and (len(form['category'].value) == 24 or 0 < len(form['newcategory'].value) <= 14):
             title = form['title'].value
             body = form['body'].value
             category = form['category'].value
+            newcategory = form['newcategory'].value
 
             query = dict(user=session.user)
-            query[b'id'] = category
-            cat = Category.objects(**query).first()
+            if len(category) == 24:
+                query[b'id'] = category
+                cat = Category.objects(**query).first()
+            else:
+                query[b'title'] = newcategory
+                cat = Category.objects(**query).first()
+                
+                if not cat:
+                    cat = Category(session.user, newcategory)
+                    cat.save()
             
             if cat:
                 found = False
@@ -146,6 +156,10 @@ class add:
             else:
                 error = "Category does not exist!"
         else:
+            if not (0 < len(form['newcategory'].value) <= 14):
+                error = "Category name needs be between 1-14 characters"
+            elif len(form['category'].value) != 24:
+                error = "Category ID not valid."
             for k in form.inputs:
                 if k.note != None:
                     error = k.note

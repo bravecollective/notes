@@ -22,8 +22,22 @@ $:render.notelist(categories, 'addnote')
                 <ul class="dropdown-menu" role="menu">
                     $for category in categories:
                         <li><a href="#" onclick="\$('#category').val('$category.id'); \$('#addnote').submit()">$category.title</a></li>
+                    <div class="input-group">
+                        <input name="newcategory" type="text" class="form-control" placeholder="Name">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit">Add</button>
+                        </span>
+                    </div>
                 </ul>
             </div>
         </form>
     </div>
 </div>
+
+<script type="text/javascript">
+    \$(document).ready(function () {
+        \$('.dropdown-menu input').click(function(e) {
+            e.stopPropagation();
+        });
+    });
+</script>
